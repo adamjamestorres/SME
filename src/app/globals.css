@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Placeholder brand tokens until the client's colors arrive (issue #11). */
+@theme {
+  --color-surface: #0b0c0e;
+  --color-surface-raised: #14161a;
+  --color-line: #262a31;
+  --color-fg: #f3f4f6;
+  --color-muted: #a1a8b3;
+  --color-brand: #f5a524;
+  --color-brand-hover: #ffb84d;
+  --color-brand-ink: #0b0c0e;
+}
+
+@theme inline {
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-fg);
+}
+
+@utility hazard-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-brand) 0 14px,
+    var(--color-surface) 14px 28px
+  );
+}
