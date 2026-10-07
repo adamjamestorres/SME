@@ -14,6 +14,19 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Local dev mode
+
+Run the portal without a Supabase account. This mode is development-only; production ignores `DEV_OWNER_EMAIL` and remains protected by real auth.
+
+```bash
+cp .env.example .env.local
+npm install
+npm run db:dev       # terminal 1; uses .pglite/ and listens on 127.0.0.1:5433
+npm run dev          # terminal 2
+```
+
+Open http://localhost:3000/portal. Set `DEV_OWNER_EMAIL` in `.env.local` to the address shown in the development banner. The page reports the five seeded customers when the database connection is working. Use `npm run db:reset` to recreate the local database and seed data. Local uploads are stored in `.dev-storage/` and are never available outside development.
+
 ## Scripts
 
 | Script | What it does |
