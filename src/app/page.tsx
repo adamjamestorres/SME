@@ -12,10 +12,8 @@ const jsonLd = {
   email: site.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: site.address.street,
     addressLocality: site.address.city,
     addressRegion: site.address.region,
-    postalCode: site.address.postalCode,
     addressCountry: "US",
   },
   areaServed: site.serviceArea,
@@ -142,9 +140,7 @@ export default function Home() {
             <div className="flex gap-3">
               <MapPinIcon className="mt-0.5 size-5 shrink-0 text-brand" />
               <address className="not-italic">
-                {address.street}
-                <br />
-                {address.city}, {address.region} {address.postalCode}
+                {address.city}, {address.region}, {address.country}
               </address>
             </div>
             <div className="flex gap-3">

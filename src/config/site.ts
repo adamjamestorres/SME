@@ -15,10 +15,10 @@ export const site = {
   description:
     "Heavy-duty truck and auto repair: fleet maintenance, brakes, diesel repair and 24/7 mobile roadside service. Our new website is coming soon. The shop is open now.",
   phone: { display: "(626) 639-9696", tel: "+16266399696" },
-  // TODO(#10): real email, address and service area.
+  // TODO(#10): real email.
   email: "service@example.com",
-  address: { street: "123 Industrial Way", city: "Your City", region: "ST", postalCode: "00000" },
-  serviceArea: "Your City and surrounding highways",
+  address: { city: "Hesperia", region: "CA", country: "USA" },
+  serviceArea: "Southern California",
   hours: [
     { label: "Shop", value: "Mon–Fri, 7am–6pm" },
     { label: "Roadside", value: "24/7, 365 days" },
