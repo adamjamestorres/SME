@@ -14,8 +14,8 @@ export const site = {
   tagline: "Heavy-duty truck & auto repair",
   description:
     "Heavy-duty truck and auto repair: fleet maintenance, brakes, diesel repair and 24/7 mobile roadside service. Our new website is coming soon. The shop is open now.",
-  // TODO(#10): real phone, email, address and service area.
-  phone: { display: "(555) 010-0100", tel: "+15550100100" },
+  phone: { display: "(626) 639-9696", tel: "+16266399696" },
+  // TODO(#10): real email, address and service area.
   email: "service@example.com",
   address: { street: "123 Industrial Way", city: "Your City", region: "ST", postalCode: "00000" },
   serviceArea: "Your City and surrounding highways",
