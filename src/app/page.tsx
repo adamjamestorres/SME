@@ -134,7 +134,7 @@ export default function Home() {
         </main>
 
         <footer className="border-t border-line">
-          <div className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 text-sm text-muted sm:grid-cols-3 sm:px-6">
+          <div className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 text-sm text-muted sm:grid-cols-[repeat(3,auto)] sm:justify-between sm:px-6">
             <div className="flex gap-3">
               <MapPinIcon className="mt-0.5 size-5 shrink-0 text-brand" />
               <address className="not-italic">

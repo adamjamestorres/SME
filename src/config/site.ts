@@ -15,8 +15,7 @@ export const site = {
   description:
     "Heavy-duty truck and auto repair in Fontana and the High Desert: fleet maintenance, brakes and diesel repair. Our new website is coming soon. The shop is open now.",
   phone: { display: "(626) 639-9696", tel: "+16266399696" },
-  // TODO(#10): real email.
-  email: "service@example.com",
+  email: "smeautoandhdtruck@gmail.com",
   address: { city: "Hesperia", region: "CA", country: "USA" },
   serviceArea: "Fontana and the High Desert",
   // TODO(#10): real shop hours.
