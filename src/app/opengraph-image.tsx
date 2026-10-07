@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
 import { loadOgFonts } from "@/lib/og-fonts";
 
-export const alt = `${site.name}: heavy-duty truck & auto repair, 24/7 mobile roadside`;
+export const alt = `${site.name}: heavy-duty truck & auto repair in Fontana and the High Desert`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -82,7 +82,7 @@ export default async function OpengraphImage() {
               textTransform: "uppercase",
             }}
           >
-            <span style={{ color: muted }}>Fleet · Brakes · Diesel · 24/7 Roadside</span>
+            <span style={{ color: muted }}>Fleet · Brakes · Diesel · Auto</span>
             <span style={{ color: brand }}>New site coming soon</span>
           </div>
         </div>

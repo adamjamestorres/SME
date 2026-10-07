@@ -13,21 +13,18 @@ export const site = {
   url: siteUrl,
   tagline: "Heavy-duty truck & auto repair",
   description:
-    "Heavy-duty truck and auto repair: fleet maintenance, brakes, diesel repair and 24/7 mobile roadside service. Our new website is coming soon. The shop is open now.",
+    "Heavy-duty truck and auto repair in Fontana and the High Desert: fleet maintenance, brakes and diesel repair. Our new website is coming soon. The shop is open now.",
   phone: { display: "(626) 639-9696", tel: "+16266399696" },
   // TODO(#10): real email.
   email: "service@example.com",
   address: { city: "Hesperia", region: "CA", country: "USA" },
-  serviceArea: "Southern California",
-  hours: [
-    { label: "Shop", value: "Mon–Fri, 7am–6pm" },
-    { label: "Roadside", value: "24/7, 365 days" },
-  ],
+  serviceArea: "Fontana and the High Desert",
+  // TODO(#10): real shop hours.
+  hours: [{ label: "Shop", value: "Mon–Fri, 7am–6pm" }],
   services: [
     "Fleet maintenance",
     "Brake shop",
     "Diesel & heavy-duty repair",
     "Auto repair",
-    "24/7 mobile roadside",
   ],
 } as const;

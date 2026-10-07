@@ -60,16 +60,14 @@ export default function Home() {
               Auto &amp; HD Truck
             </span>
           </Link>
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface-raised/80 px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-            </span>
-            <span>
-              <span className="hidden sm:inline">Roadside open</span>
-              <span className="sm:hidden">Open</span> 24/7
-            </span>
-          </span>
+          <a
+            href={`tel:${site.phone.tel}`}
+            aria-label={`Call ${site.phone.display}`}
+            className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-line bg-surface-raised/80 px-3 text-sm font-medium whitespace-nowrap text-fg transition-colors hover:border-muted ${focusRing}`}
+          >
+            <PhoneIcon className="size-4 text-brand" />
+            <span className="hidden sm:inline">{site.phone.display}</span>
+          </a>
         </header>
 
         <main className="mx-auto grid w-full max-w-6xl flex-1 items-center gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-16 lg:py-20">
@@ -85,7 +83,7 @@ export default function Home() {
               Heavy-duty truck <span className="text-brand">&amp; auto repair</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-pretty text-muted sm:text-xl">
-              Fleet maintenance, brakes, diesel repair and mobile roadside service. We&apos;re
+              Fleet maintenance, brakes and diesel repair across {site.serviceArea}. We&apos;re
               building our new site. The shop is open now, so give us a call.
             </p>
 

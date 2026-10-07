@@ -1,6 +1,6 @@
 # SME
 
-Website for SME Auto & HD Truck: heavy-duty truck and auto repair, fleet maintenance and 24/7 mobile roadside service. Right now it serves a dark-mode "coming soon" home page.
+Website for SME Auto & HD Truck: heavy-duty truck and auto repair and fleet maintenance in Fontana and the High Desert. Right now it serves a dark-mode "coming soon" home page.
 
 Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS 4.
 

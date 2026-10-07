@@ -15,7 +15,7 @@ const barlowCondensed = Barlow_Condensed({
   weight: ["600", "700", "800"],
 });
 
-const title = `${site.name} | Truck & Auto Repair, 24/7 Roadside`;
+const title = `${site.name} | Truck & Auto Repair in Fontana & the High Desert`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,8 +28,9 @@ export const metadata: Metadata = {
     "fleet maintenance",
     "brake shop",
     "auto repair",
-    "mobile roadside service",
-    "24/7 truck repair",
+    "truck repair Fontana",
+    "High Desert truck repair",
+    "Hesperia diesel repair",
   ],
   alternates: { canonical: "/" },
   openGraph: {
