@@ -26,6 +26,8 @@ Open http://localhost:3000.
 | `npm test` | Run the Vitest unit tests once |
 | `npm run test:watch` | Run Vitest in watch mode |
 
+CI (`.github/workflows/ci.yml`) runs lint, typecheck, test and build on every pull request and every push to `main`; the check shows as `CI / check`.
+
 ## Where things live
 
 - `src/config/site.ts`: business name, phone, email, address, hours and services. Placeholder values are marked `TODO(#10)`.

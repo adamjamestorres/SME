@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Harmless dummy values only. The build must pass with no database,
+    # Stripe, Resend or Supabase, so their variables stay unset here.
+    env:
+      NEXT_PUBLIC_SITE_URL: https://example.com
+      STRIPE_ENABLE_ACH: "false"
+      PAYMENT_MAX_CENTS: "1000000"
+      # Cloudflare's public Turnstile test keys (always pass).
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
