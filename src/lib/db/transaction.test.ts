@@ -32,3 +32,19 @@ describe("withTransaction (PGlite)", { timeout: 60_000 }, () => {
     expect(await count()).toBe(1);
   });
 });
+
+describe("withTransaction rollback failure", () => {
+  it("rethrows the original error when the rollback also fails", async () => {
+    const db = {
+      query: async (sql: string) => {
+        if (sql === "rollback") throw new Error("connection lost");
+        return { rows: [] };
+      },
+    };
+    await expect(
+      withTransaction(db, async () => {
+        throw new Error("constraint violation");
+      }),
+    ).rejects.toThrow("constraint violation");
+  });
+});

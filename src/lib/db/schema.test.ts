@@ -100,13 +100,16 @@ describe("migrations (PGlite)", { timeout: 60_000 }, () => {
         it(`can't read or write ${table}`, async () => {
           await db.exec(`set role ${role}`);
           try {
-            const read = await db.query(`select * from ${table}`).then(
-              (r) => r.rows.length,
-              () => "denied",
-            );
-            expect([0, "denied"]).toContain(read);
-            await expect(db.query(`insert into ${table} default values`)).rejects.toThrow();
-            await expect(db.query(`delete from ${table}`)).rejects.toThrow();
+            // Permission errors, not NOT NULL or empty-table results, prove access is denied.
+            for (const sql of [
+              `select * from ${table}`,
+              `insert into ${table} default values`,
+              // rate_limit_hits.id is an identity column, which can't be set to itself.
+              `update ${table} set ${table === "rate_limit_hits" ? "bucket = bucket" : "id = id"}`,
+              `delete from ${table}`,
+            ]) {
+              await expect(db.query(sql), sql).rejects.toThrow(/permission denied/);
+            }
           } finally {
             await db.exec("reset role");
           }

@@ -13,7 +13,8 @@ export async function withTransaction<T>(db: Db, fn: (tx: Db) => Promise<T>): Pr
     await db.query("commit");
     return result;
   } catch (error) {
-    await db.query("rollback");
+    // If the rollback fails too (say the connection dropped), keep the original error.
+    await db.query("rollback").catch(() => {});
     throw error;
   }
 }
