@@ -11,10 +11,13 @@ export type FieldProps = {
   error?: ReactNode;
 };
 
-export function fieldAria(id: string, { hint, error }: Pick<FieldProps, "hint" | "error">) {
-  const describedBy = [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(" ");
+export function fieldAria(
+  id: string,
+  { hint, error, describedBy }: Pick<FieldProps, "hint" | "error"> & { describedBy?: string },
+) {
+  const ids = [describedBy, hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(" ");
   return {
-    "aria-describedby": describedBy || undefined,
+    "aria-describedby": ids || undefined,
     "aria-invalid": error ? true : undefined,
   } as const;
 }

@@ -43,7 +43,11 @@ type StatusBadgeProps = {
 }[Kind];
 
 export function StatusBadge({ kind, status, className }: StatusBadgeProps) {
-  const { tone, label } = (tones[kind] as Record<string, { tone: Tone; label: string }>)[status];
+  // Fall back to a neutral badge if the data holds a status this map doesn't know yet.
+  const { tone, label } = (tones[kind] as Record<string, { tone: Tone; label: string }>)[status] ?? {
+    tone: "neutral",
+    label: status,
+  };
   return (
     <span
       className={cx(

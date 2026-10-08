@@ -5,7 +5,7 @@ import { controlClasses, FieldLabel, FieldMessages, fieldAria, type FieldProps }
 // `type`, `inputMode`, `autoComplete` and other input attributes pass straight through.
 type InputProps = Omit<ComponentProps<"input">, "children"> & FieldProps;
 
-export function Input({ label, hint, error, id, className, ...props }: InputProps) {
+export function Input({ label, hint, error, id, "aria-describedby": describedBy, className, ...props }: InputProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   return (
@@ -14,8 +14,8 @@ export function Input({ label, hint, error, id, className, ...props }: InputProp
       <input
         id={inputId}
         className={cx(controlClasses, "min-h-11", focusRing, className)}
-        {...fieldAria(inputId, { hint, error })}
         {...props}
+        {...fieldAria(inputId, { hint, error, describedBy })}
       />
       <FieldMessages id={inputId} hint={hint} error={error} />
     </div>

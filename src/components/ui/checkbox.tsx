@@ -4,7 +4,7 @@ import { FieldMessages, fieldAria, type FieldProps } from "./field";
 
 type CheckboxProps = Omit<ComponentProps<"input">, "type" | "children"> & FieldProps;
 
-export function Checkbox({ label, hint, error, id, className, ...props }: CheckboxProps) {
+export function Checkbox({ label, hint, error, id, "aria-describedby": describedBy, className, ...props }: CheckboxProps) {
   const generatedId = useId();
   const checkboxId = id ?? generatedId;
   return (
@@ -15,8 +15,8 @@ export function Checkbox({ label, hint, error, id, className, ...props }: Checkb
           id={checkboxId}
           type="checkbox"
           className={cx("size-5 shrink-0 cursor-pointer rounded-sm accent-brand", focusRing, className)}
-          {...fieldAria(checkboxId, { hint, error })}
           {...props}
+          {...fieldAria(checkboxId, { hint, error, describedBy })}
         />
         <span>{label}</span>
       </label>

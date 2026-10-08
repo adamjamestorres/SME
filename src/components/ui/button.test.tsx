@@ -21,4 +21,10 @@ describe("StatusBadge", () => {
     expect(html).toContain("Paid");
     expect(html).toContain("bg-success");
   });
+
+  it("falls back to a neutral badge for an unknown status", () => {
+    const status = "archived" as unknown as "new";
+    const html = renderToStaticMarkup(<StatusBadge kind="lead" status={status} />);
+    expect(html).toContain("archived");
+  });
 });

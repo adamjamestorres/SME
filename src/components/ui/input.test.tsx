@@ -44,3 +44,14 @@ describe("Input", () => {
     expect(input).toContain('autoComplete="tel"');
   });
 });
+
+describe("Input aria wiring", () => {
+  it("keeps a caller's aria-describedby alongside the error", () => {
+    const input = inputTag(
+      renderToStaticMarkup(
+        <Input id="vin" label="VIN" aria-describedby="vin-help" error="Check the VIN" />,
+      ),
+    );
+    expect(input).toContain('aria-describedby="vin-help vin-error"');
+  });
+});

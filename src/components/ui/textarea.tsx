@@ -4,7 +4,7 @@ import { controlClasses, FieldLabel, FieldMessages, fieldAria, type FieldProps }
 
 type TextareaProps = Omit<ComponentProps<"textarea">, "children"> & FieldProps;
 
-export function Textarea({ label, hint, error, id, rows = 4, className, ...props }: TextareaProps) {
+export function Textarea({ label, hint, error, id, "aria-describedby": describedBy, rows = 4, className, ...props }: TextareaProps) {
   const generatedId = useId();
   const textareaId = id ?? generatedId;
   return (
@@ -14,8 +14,8 @@ export function Textarea({ label, hint, error, id, rows = 4, className, ...props
         id={textareaId}
         rows={rows}
         className={cx(controlClasses, "py-2.5", focusRing, className)}
-        {...fieldAria(textareaId, { hint, error })}
         {...props}
+        {...fieldAria(textareaId, { hint, error, describedBy })}
       />
       <FieldMessages id={textareaId} hint={hint} error={error} />
     </div>

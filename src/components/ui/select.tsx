@@ -5,7 +5,7 @@ import { controlClasses, FieldLabel, FieldMessages, fieldAria, type FieldProps }
 // Pass `<option>` elements as children.
 type SelectProps = ComponentProps<"select"> & FieldProps;
 
-export function Select({ label, hint, error, id, className, children, ...props }: SelectProps) {
+export function Select({ label, hint, error, id, "aria-describedby": describedBy, className, children, ...props }: SelectProps) {
   const generatedId = useId();
   const selectId = id ?? generatedId;
   return (
@@ -14,8 +14,8 @@ export function Select({ label, hint, error, id, className, children, ...props }
       <select
         id={selectId}
         className={cx(controlClasses, "min-h-11", focusRing, className)}
-        {...fieldAria(selectId, { hint, error })}
         {...props}
+        {...fieldAria(selectId, { hint, error, describedBy })}
       >
         {children}
       </select>
