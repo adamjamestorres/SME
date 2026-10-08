@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ClockIcon, MailIcon, MapPinIcon, PhoneIcon } from "@/components/icons";
+import { CallButton, LinkButton } from "@/components/ui";
 import { site } from "@/config/site";
 
 const jsonLd = {
@@ -88,20 +89,11 @@ export default function Home() {
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={`tel:${site.phone.tel}`}
-                className={`inline-flex min-h-12 items-center justify-center gap-2.5 rounded-md bg-brand px-6 font-display text-lg font-bold tracking-wide text-brand-ink uppercase transition-colors hover:bg-brand-hover ${focusRing}`}
-              >
-                <PhoneIcon className="size-5" />
-                Call {site.phone.display}
-              </a>
-              <a
-                href={`mailto:${site.email}`}
-                className={`inline-flex min-h-12 items-center justify-center gap-2.5 rounded-md border border-line bg-surface-raised px-6 font-display text-lg font-semibold tracking-wide uppercase transition-colors hover:border-muted ${focusRing}`}
-              >
+              <CallButton size="lg">Call {site.phone.display}</CallButton>
+              <LinkButton href={`mailto:${site.email}`} variant="secondary" size="lg">
                 <MailIcon className="size-5" />
                 Email us
-              </a>
+              </LinkButton>
             </div>
           </section>
 
