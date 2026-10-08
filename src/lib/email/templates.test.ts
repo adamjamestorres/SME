@@ -141,10 +141,22 @@ describe("escaping", () => {
       }),
     ],
     ["paymentRequest", paymentRequest({ customerName: XSS, description: XSS, amountCents: 100, url: `${PAY_URL}"${XSS}` })],
-    ["paymentReceived", paymentReceived({ customerName: XSS, description: XSS, amountCents: 100, portalUrl: XSS })],
-    ["signatureRequest", signatureRequest({ customerName: XSS, documentName: XSS, url: XSS, expiresAt: new Date() })],
+    [
+      "paymentReceived",
+      paymentReceived({ customerName: XSS, description: XSS, amountCents: 100, portalUrl: `${PAY_URL}?${XSS}` }),
+    ],
+    [
+      "signatureRequest",
+      signatureRequest({ customerName: XSS, documentName: XSS, url: `${SIGN_URL}#${XSS}`, expiresAt: new Date() }),
+    ],
     ["signedCopy", signedCopy({ recipientName: XSS, documentName: XSS, signedAt: new Date() })],
   ];
+
+  it("refuses a link with an unsafe scheme", () => {
+    expect(() =>
+      paymentRequest({ customerName: "Pat", description: "x", amountCents: 100, url: "javascript:alert(1)" }),
+    ).toThrow(/http\(s\), tel or mailto/);
+  });
 
   it.each(rendered)("%s escapes <script> in every value", (_, email) => {
     expect(email.html).not.toMatch(/<script/i);

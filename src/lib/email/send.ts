@@ -24,11 +24,16 @@ const RESEND_URL = "https://api.resend.com/emails";
  * Without RESEND_API_KEY: in development and test it prints the email to the console (local fake
  * data only) and returns; in production it throws.
  */
-export async function sendEmail({ to, subject, html, text, replyTo, attachments }: SendEmailInput): Promise<void> {
+export async function sendEmail({ to, subject: rawSubject, html, text, replyTo, attachments }: SendEmailInput): Promise<void> {
+  const recipients = [to].flat().filter(Boolean);
+  if (recipients.length === 0) throw new Error("sendEmail needs at least one recipient");
+  // Subjects can include visitor input (a lead's name); a line break there breaks the header.
+  const subject = rawSubject.replace(/\s+/g, " ").trim();
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     if (process.env.NODE_ENV === "production") throw new Error("RESEND_API_KEY is not set");
-    console.info(`[email] (not sent: no RESEND_API_KEY)\nTo: ${[to].flat().join(", ")}\nSubject: ${subject}\n\n${text}`);
+    console.info(`[email] (not sent: no RESEND_API_KEY)\nTo: ${recipients.join(", ")}\nSubject: ${subject}\n\n${text}`);
     return;
   }
 
@@ -40,7 +45,7 @@ export async function sendEmail({ to, subject, html, text, replyTo, attachments 
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from,
-      to: [to].flat(),
+      to: recipients,
       subject,
       html,
       text,

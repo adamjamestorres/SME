@@ -81,6 +81,18 @@ describe("sendEmail", () => {
   });
 });
 
+describe("sendEmail input checks", () => {
+  it("collapses line breaks in the subject", async () => {
+    await sendEmail({ ...message, subject: "New request: Pat\r\nBcc: x@example.com" });
+    expect(sentBody().subject).toBe("New request: Pat Bcc: x@example.com");
+  });
+
+  it("refuses an empty recipient list", async () => {
+    await expect(sendEmail({ ...message, to: [] })).rejects.toThrow("recipient");
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
 describe("sendToOwners", () => {
   it("sends to every OWNER_EMAILS address", async () => {
     vi.stubEnv("OWNER_EMAILS", "Owner@Example.com, second@example.com");

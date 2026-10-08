@@ -49,8 +49,9 @@ export function textFooter(): string {
   return `--\n${site.name}\n${site.phone.display}\n${ADDRESS}`;
 }
 
-/** A large, tappable button link. `url` and `label` are escaped here. */
+/** A large, tappable button link. `url` and `label` are escaped here; only safe schemes pass. */
 export function button(url: string, label: string): string {
+  if (!/^(https?:|tel:|mailto:)/i.test(url)) throw new Error("Email links must be http(s), tel or mailto");
   return `<p style="margin:24px 0;"><a href="${escapeHtml(url)}" style="display:inline-block;padding:14px 24px;background:#18181b;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600;">${escapeHtml(label)}</a></p>`;
 }
 
