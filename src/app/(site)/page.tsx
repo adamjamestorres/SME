@@ -166,7 +166,10 @@ export default function Home() {
             </div>
           </div>
           <p className="mx-auto w-full max-w-6xl px-4 pb-8 text-xs text-muted/70 sm:px-6">
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+            © {new Date().getFullYear()} {site.name}. All rights reserved.{" "}
+            <Link href="/portal" className={`rounded-sm underline-offset-2 hover:underline ${focusRing}`}>
+              Owner login
+            </Link>
           </p>
         </footer>
       </div>
