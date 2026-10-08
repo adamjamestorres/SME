@@ -1,5 +1,7 @@
-// Signed-in portal pages. Pass-through for now; #6 adds the owner check and
-// #19 the portal shell.
-export default function PortalAppLayout({ children }: LayoutProps<"/portal">) {
+import { requireOwner } from "@/lib/auth";
+
+// Signed-in portal pages. #19 adds the portal shell.
+export default async function PortalAppLayout({ children }: LayoutProps<"/portal">) {
+  await requireOwner();
   return children;
 }

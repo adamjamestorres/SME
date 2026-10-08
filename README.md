@@ -55,3 +55,15 @@ The root `layout.tsx` and the metadata files (icons, Open Graph image, robots, s
 Every environment variable is listed with a comment in [`.env.example`](.env.example). Copy it to `.env.local` for local development and never commit real values.
 
 `NEXT_PUBLIC_SITE_URL` sets the absolute URL used for canonical links, Open Graph images and the sitemap. On Vercel it falls back to the production domain.
+
+## Owner login
+
+The owner portal (`/portal`) uses one password and a 30-day cookie. The password itself is never stored anywhere: the `OWNER_PASSWORD_HASH` environment variable holds a scrypt hash of it.
+
+1. On your own machine, run `npm run owner:hash-password`. It asks for the password twice (at least 12 characters, not echoed) and prints only the hash.
+2. Paste the hash into Vercel as `OWNER_PASSWORD_HASH` for **Production and Preview**.
+3. Sign in at `/portal/login`, then save the password in your phone's password manager.
+
+**Changing the password:** run the command again, replace the value in Vercel and redeploy. That signs every device out.
+
+**Local dev:** hash a throwaway password and put it in `.env.local`. The hash contains `$` characters, so write each one as `\$` (Next.js expands `$NAME` in `.env` files). Don't reuse the real password.
